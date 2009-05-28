@@ -116,11 +116,11 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/RemoveProfile.qfilter",
+				"$(SRCROOT)/ApplyGenericRGB.qfilter",
 			);
 			name = "Generate ApplyGenericRGB.h";
 			outputPaths = (
-				"$(BUILD_ROOT)/RemoveProfile.h",
+				"$(BUILD_ROOT)/ApplyGenericRGB.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
