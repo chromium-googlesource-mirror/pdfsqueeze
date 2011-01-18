@@ -47,7 +47,17 @@ int main (int argc, const char * argv[]) {
     fprintf(stderr, "pdfsqueeze:0: error: Unable to open %s\n", [inPath UTF8String]);
     return 1;
   }
-  [pdf setDocumentAttributes:[NSDictionary dictionary]];
+  NSDictionary *oldAttributes = [pdf documentAttributes];
+  NSMutableDictionary *newAttributes = [NSMutableDictionary dictionary];
+  NSDate *date = [oldAttributes objectForKey:PDFDocumentCreationDateAttribute];
+  if (date) {
+    [newAttributes setObject:date forKey:PDFDocumentCreationDateAttribute];
+  }
+  date = [oldAttributes objectForKey:PDFDocumentModificationDateAttribute];
+  if (date) {
+    [newAttributes setObject:date forKey:PDFDocumentModificationDateAttribute];
+  }
+  [pdf setDocumentAttributes:newAttributes];
   QuartzFilter *filter = GetGenericProfileFilter();
   NSDictionary *options = [NSDictionary dictionaryWithObject:filter 
                                                       forKey:@"QuartzFilter"];
